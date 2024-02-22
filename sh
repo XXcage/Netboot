@@ -6,14 +6,17 @@ USERNAME="bckp"
 # Install Samba
 sudo apt-get update -y
 sudo apt-get install -y samba
+echo "Username: $USERNAME"
 
 # Add a new user
 sudo adduser $USERNAME
 sudo smbpasswd -a $USERNAME
+echo "Username: $USERNAME"
 
 # Allow Samba through the firewall
 sudo ufw allow Samba
 #sudo ufw enable
+echo "Username: $USERNAME"
 
 # Set permissions on parent directories
 sudo chmod +rx /home
