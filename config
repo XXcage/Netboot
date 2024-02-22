@@ -1,0 +1,7 @@
+#located at c:/Users/user/.ssh/config
+
+
+Host boot1 172.30.30.4
+  HostName 172.30.30.4
+  User bckp
+  IdentityFile "C:/Users/User/.ssh/key"
