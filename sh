@@ -8,6 +8,8 @@ sudo apt-get install -y samba
 sudo adduser USER
 sudo smbpasswd -a USER
 sudo ufw allow Samba
+sudo chmod +rx /home
+sudo chmod +rx /home/USER
 
 # Create a Shared Directory
 #sudo mkdir /home/ubuntu/Desktop/isoshared
