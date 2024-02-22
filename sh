@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the username
-USERNAME="your username"
+USERNAME="bckp"
 
 # Install Samba
 sudo apt-get update -y
