@@ -1,26 +1,37 @@
-sudo chmod -R +x /home/bckp
-
 #!/bin/bash
+
+# Define the username
+USERNAME="your username"
 
 # Install Samba
 sudo apt-get update -y
 sudo apt-get install -y samba
-sudo adduser USER
-sudo smbpasswd -a USER
+
+# Add a new user
+sudo adduser $USERNAME
+sudo smbpasswd -a $USERNAME
+
+# Allow Samba through the firewall
 sudo ufw allow Samba
+#sudo ufw enable
+
+# Set permissions on parent directories
 sudo chmod +rx /home
-sudo chmod +rx /home/USER
+sudo chmod +rx /home/$USERNAME
+sudo chmod +rx /home/$USERNAME/Desktop
 
 # Create a Shared Directory
-#sudo mkdir /home/ubuntu/Desktop/isoshared
+sudo mkdir /home/$USERNAME/Desktop/sharez
 
 # Configure Samba
-echo "[testshare]
-   path = /home/USER/testshare
+echo "[sharez]
+   path = /home/$USERNAME/sharez
    read only = no
    browsable = yes
    guest ok = yes
    write ok = yes
    writable = yes
-   valid users = roman" | sudo tee -a /etc/samba/smb.conf
+   valid users = $USERNAME" | sudo tee -a /etc/samba/smb.conf
 
+# Restart Samba service
+sudo service smbd restart
