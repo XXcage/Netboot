@@ -7,7 +7,6 @@ read USERNAME
 # Install Samba
 sudo apt-get update -y
 sudo apt-get install -y samba
-sudo apt install curl -y
 
 # Check if the user already exists
 if id "$USERNAME" >/dev/null   2>&1; then
