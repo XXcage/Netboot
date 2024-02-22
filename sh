@@ -25,6 +25,9 @@ sudo smbpasswd -a $USERNAME
 sudo ufw allow  445
 
 # Set permissions on parent directories
+sudo mkdir -p /home
+sudo mkdir -p /home/$USERNAME
+sudo mkdir -p /home/$USERNAME/Desktop
 sudo chmod +rx /home
 sudo chmod +rx /home/$USERNAME
 sudo chmod +rx /home/$USERNAME/Desktop
