@@ -1,20 +1,22 @@
+#!/bin/bash
+
+# Prompt for username
+echo "Enter the username:"
+read USERNAME
 
 # Public key to add
 PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMp8KZNG8unefrzWRB68w5p950F9MwQTN44jY4kOKtfL Roman-PC_keys"
 
-# User for whom the key should be added
-USERNAME="your_username"
-
 # Check if the .ssh directory exists, create it if not
 if [ ! -d "/home/$USERNAME/.ssh" ]; then
     sudo mkdir -p "/home/$USERNAME/.ssh"
-    sudo chmod  700 "/home/$USERNAME/.ssh"
+    sudo chmod   700 "/home/$USERNAME/.ssh"
 fi
 
 # Check if the authorized_keys file exists, create it if not
 if [ ! -f "/home/$USERNAME/.ssh/authorized_keys" ]; then
     sudo touch "/home/$USERNAME/.ssh/authorized_keys"
-    sudo chmod  600 "/home/$USERNAME/.ssh/authorized_keys"
+    sudo chmod   600 "/home/$USERNAME/.ssh/authorized_keys"
 fi
 
 # Check if the public key is already in the authorized_keys file
