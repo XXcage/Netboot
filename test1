@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enable debugging
-set -x
+#set -x
 
 # Prompt the user for their username
 read -p "Enter your username: " username
@@ -33,6 +33,7 @@ rm "$user_home/iventoy-1.0.19-linux-free.tar.gz"
 
 # Construct the path to iventoy.sh
 IVENTOY_PATH="$user_home/iventoy-1.0.19/iventoy.sh"
+IVENTOY_PATH2="$user_home/iventoy-1.0.19/"
 
 # Echo the path to iventoy.sh for troubleshooting
 echo "Path to iventoy.sh: $IVENTOY_PATH"
@@ -49,11 +50,14 @@ else
     echo "Cron job already exists."
 fi
 
+echo "Path to iventoy.sh: $IVENTOY_PATH"
+
 # Run the script immediately using the provided password
 echo "Running the script immediately..."
-echo $password | sudo -S $IVENTOY_PATH -R start
+cd $IVENTOY_PATH2
+echo $password | sudo -S ./iventoy.sh -R start
 
 echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
 
 # Disable debugging (optional)
-set +x
+#set +x
