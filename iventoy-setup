@@ -42,3 +42,4 @@ echo "Running the script immediately..."
 echo $password | sudo -S $IVENTOY_PATH -R start
 
 echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
+echo "iso folder path is: $user_home/iventoy-1.0.19/iso
