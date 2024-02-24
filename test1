@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Prompt the user for their username
+read -p "Enter your username: " username
+
+# Echo the username for troubleshooting
+echo "Username entered: $username"
+
+# Define the URL of the file to download
+url="https://github.com/ventoy/PXE/releases/download/v1.0.19/iventoy-1.0.19-linux-free.tar.gz"
+
+# Define the path to the user's home directory
+user_home="/home/$username"
+
+# Echo the user's home directory path for troubleshooting
+echo "User's home directory: $user_home"
+
+# Download the file
+wget "$url" -O "$user_home/iventoy-1.0.19-linux-free.tar.gz"
+
+# Extract the file to the user's home directory
+tar -xzf "$user_home/iventoy-1.0.19-linux-free.tar.gz" -C "$user_home"
+
+# Delete the downloaded tar.gz file
+rm "$user_home/iventoy-1.0.19-linux-free.tar.gz"
+
+# Construct the path to iventoy.sh
+IVENTOY_PATH="$user_home/iventoy-1.0.19/iventoy.sh"
+
+# Echo the path to iventoy.sh for troubleshooting
+echo "Path to iventoy.sh: $IVENTOY_PATH"
+
+# Define the cron job using the constructed path
+CRON_JOB="@reboot sleep   15 && /bin/bash -c 'echo $password | sudo -S $IVENTOY_PATH -R start'"
+
+# Check if the cron job already exists
+if ! sudo crontab -l | grep -q "$CRON_JOB"; then
+    # Add the cron job
+    (sudo crontab -l; echo "$CRON_JOB") | sudo crontab -
+    echo "Cron job added successfully."
+else
+    echo "Cron job already exists."
+fi
+
+# Run the script immediately using the provided password
+echo "Running the script immediately..."
+echo $password | sudo -S $IVENTOY_PATH -R start
+
+echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
