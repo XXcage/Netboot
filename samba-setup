@@ -21,8 +21,8 @@ echo "Enter the SMB password for $USERNAME:"
 sudo smbpasswd -a $USERNAME
 
 # Allow Samba through the firewall
-# Assuming Samba uses port  445, adjust if different
-sudo ufw allow  445
+# Assuming Samba uses port   445, adjust if different
+sudo ufw allow   445
 
 # Set permissions on parent directories
 sudo mkdir -p /home
@@ -47,3 +47,6 @@ echo "[sharez]
 
 # Restart Samba service
 sudo service smbd restart
+
+# Export the path to the Samba share as an environment variable
+export SAMBA_SHARE_PATH="/home/$USERNAME/Desktop/sharez"
