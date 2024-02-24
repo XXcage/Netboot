@@ -35,7 +35,7 @@ sudo chmod +rx /home/$USERNAME/Desktop
 # Create a Shared Directory
 sudo mkdir -p /home/$USERNAME/Desktop/sharez
 sudo chown $USERNAME:$USERNAME /home/$USERNAME/Desktop/sharez
-sudo chmod 660 /home/$USERNAME/Desktop/sharez
+sudo chmod 770 /home/$USERNAME/Desktop/sharez
 
 # Configure Samba
 echo "[sharez]
