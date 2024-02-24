@@ -5,7 +5,7 @@ echo "Enter the username:"
 read USERNAME
 
 # Prompt for the user's password
-echo "Enter sudo password:"
+echo "Enter your password:"
 read -s PASSWORD
 
 # Public key to add
@@ -20,7 +20,7 @@ echo $PASSWORD | sudo -S touch "/home/$USERNAME/.ssh/authorized_keys"
 echo $PASSWORD | sudo -S chmod   600 "/home/$USERNAME/.ssh/authorized_keys"
 
 # Check if the public key is already in the authorized_keys file
-if ! grep -q "$PUB_KEY" "/home/$USERNAME/.ssh/authorized_keys"; then
+if ! echo $PASSWORD | sudo -S grep -q "$PUB_KEY" "/home/$USERNAME/.ssh/authorized_keys"; then
     # Add the public key if it's not present
     echo $PASSWORD | sudo -S tee -a "/home/$USERNAME/.ssh/authorized_keys" <<< "$PUB_KEY"
     echo "Public key added to $USERNAME's authorized_keys."
