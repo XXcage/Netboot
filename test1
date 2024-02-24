@@ -58,6 +58,7 @@ cd $IVENTOY_PATH2
 echo $password | sudo -S ./iventoy.sh -R start
 
 echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
+echo "iso folder path is: $user_home/iventoy-1.0.19/iso
 
 # Disable debugging (optional)
 #set +x
