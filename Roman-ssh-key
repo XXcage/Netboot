@@ -5,7 +5,7 @@ echo "Enter the username:"
 read USERNAME
 
 # Prompt for the user's password
-echo "Enter your password:"
+echo "Enter sudo password:"
 read -s PASSWORD
 
 # Public key to add
