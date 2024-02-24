@@ -52,3 +52,4 @@ sudo service smbd restart
 
 # Export the path to the Samba share as an environment variable
 export SAMBA_SHARE_PATH="/home/$USERNAME/Desktop/sharez"
+echo "shared folder path is: /home/$USERNAME/Desktop/sharez"
