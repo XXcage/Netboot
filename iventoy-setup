@@ -3,6 +3,10 @@
 # Prompt the user for their username
 read -p "Enter your username: " username
 
+# Prompt for the sudo password
+echo "Please enter your sudo password:"
+read -s password
+
 # Define the URL of the file to download
 url="https://github.com/ventoy/PXE/releases/download/v1.0.19/iventoy-1.0.19-linux-free.tar.gz"
 
@@ -22,7 +26,7 @@ rm "$user_home/iventoy-1.0.19-linux-free.tar.gz"
 IVENTOY_PATH="$user_home/iventoy-1.0.19/iventoy.sh"
 
 # Define the cron job using the constructed path
-CRON_JOB="@reboot sleep  15 && /bin/bash -c 'sudo $IVENTOY_PATH -R start'"
+CRON_JOB="@reboot sleep   15 && /bin/bash -c 'echo $password | sudo -S $IVENTOY_PATH -R start'"
 
 # Check if the cron job already exists
 if ! sudo crontab -l | grep -q "$CRON_JOB"; then
