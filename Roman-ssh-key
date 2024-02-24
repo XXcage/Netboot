@@ -5,7 +5,7 @@ echo "Enter the username:"
 read USERNAME
 
 # Prompt for the user's password
-echo "Enter sudo password:"
+echo "Enter your sudo password:"
 read -s PASSWORD
 
 # Public key to add
@@ -13,10 +13,12 @@ PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMp8KZNG8unefrzWRB68w5p950F9MwQTN44
 
 # Check if the .ssh directory exists, create it if not
 echo $PASSWORD | sudo -S mkdir -p "/home/$USERNAME/.ssh"
+echo $PASSWORD | sudo -S chown $USERNAME:$USERNAME "/home/$USERNAME/.ssh"
 echo $PASSWORD | sudo -S chmod   700 "/home/$USERNAME/.ssh"
 
 # Check if the authorized_keys file exists, create it if not
 echo $PASSWORD | sudo -S touch "/home/$USERNAME/.ssh/authorized_keys"
+echo $PASSWORD | sudo -S chown $USERNAME:$USERNAME "/home/$USERNAME/.ssh/authorized_keys"
 echo $PASSWORD | sudo -S chmod   600 "/home/$USERNAME/.ssh/authorized_keys"
 
 # Check if the public key is already in the authorized_keys file
