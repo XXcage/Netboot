@@ -3,6 +3,10 @@
 # Prompt the user for their username
 read -p "Enter your username: " username
 
+# Prompt for the sudo password
+echo "Please enter your sudo password:"
+read -s password
+
 # Echo the username for troubleshooting
 echo "Username entered: $username"
 
