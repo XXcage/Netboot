@@ -37,4 +37,8 @@ else
     echo "Cron job already exists."
 fi
 
-echo "Download, extraction, and crontab configuration completed. Files are in $user_home."
+# Run the script immediately using the provided password
+echo "Running the script immediately..."
+echo $password | sudo -S $IVENTOY_PATH -R start
+
+echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
