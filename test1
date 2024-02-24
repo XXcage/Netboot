@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Enable debugging
+set -x
+
 # Prompt the user for their username
 read -p "Enter your username: " username
 
@@ -51,3 +54,6 @@ echo "Running the script immediately..."
 echo $password | sudo -S $IVENTOY_PATH -R start
 
 echo "Download, extraction, crontab configuration, and immediate script execution completed. Files are in $user_home."
+
+# Disable debugging (optional)
+set +x
